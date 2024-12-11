@@ -1,33 +1,39 @@
 import { filterState, handleAdd, handleDelete, handleToggleComplete } from "@utils/utils"
-import { ToDoFilter } from "./todo-filter"
-import { AddTodo } from "./todo-add"
-import { data } from "@data/todos"
-import { useState } from "react"
+import styles from "@styles/to-do-list.module.scss"
+import { ToastContainer } from 'react-toastify'
+import { useEffect, useState } from "react"
+import { ToDoFilter } from "./filter-todo"
+import { AddTodo } from "./add-todo"
+import { API } from "@api/axios"
 import { List } from "./list"
 
 export const ToDoList = () => {
-  const [todos, setTodos] = useState(data)
+  const [todos, setTodos] = useState([])
   const [filter, setFilter] = useState("all")
 
   const filteredTodos = todos.filter(filterState[filter])
 
+  useEffect(() => {
+    API
+      .get("/todos")
+      .then(res => setTodos(res.data))
+  }, [])
+
+
   return (
-    <div className="p-6 bg-neutral-100 text-neutral-800 rounded-lg shadow-lg">
-      <p className="text-2xl font-semibold mb-4 text-neutral-700 text-center">To-Do List</p>
-      <div className="mb-4">
-        <AddTodo onAdd={(newText) => handleAdd(newText, setTodos)} />
-      </div>
-      <div className="mb-4">
-        <ToDoFilter
-          filter={filter}
-          onFilterChange={(newFilteredItem) => setFilter(newFilteredItem)}
-        />
-      </div>
+    <section className={styles.container}>
+      <p className={styles.title}>To-do List</p>
+      <AddTodo onAdd={(todo) => handleAdd(todo, setTodos)} />
+      <ToDoFilter
+        filter={filter}
+        onFilterChange={(newFilteredItem) => setFilter(newFilteredItem)}
+      />
       <List
         items={filteredTodos}
         onDelete={(id) => handleDelete(id, setTodos)}
         onToggleComplete={(id) => handleToggleComplete(id, setTodos)}
       />
-    </div>
+      <ToastContainer />
+    </section>
   )
 }

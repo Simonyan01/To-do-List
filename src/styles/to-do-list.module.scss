@@ -1,0 +1,13 @@
+.container {
+  @apply p-6 bg-neutral-100 text-neutral-800 rounded-l-lg shadow-lg;
+  .title {
+    @apply text-4xl font-semibold text-neutral-700 text-center;
+  }
+}
+
+.listContainer {
+  @apply p-4 bg-neutral-100 text-neutral-800 rounded-lg shadow-sm;
+  .unavailable {
+    @apply text-2xl tracking-wide;
+  }
+}

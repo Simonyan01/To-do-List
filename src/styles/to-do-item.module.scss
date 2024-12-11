@@ -1,0 +1,28 @@
+.container {
+  @apply p-4 rounded-lg shadow-sm mb-4 flex items-center justify-between;
+  .text {
+    @apply text-base text-wrap font-medium;
+  }
+  .description {
+    @apply text-sm text-neutral-500 mx-2;
+  }
+  .buttonContainer {
+    @apply flex space-x-2;
+    .basicButton {
+      @apply px-3 py-1 rounded-lg transition;
+    }
+    .initial {
+      @apply bg-red-200 text-red-800 hover:bg-red-300;
+    }
+    .active {
+      @apply bg-neutral-200 text-neutral-800 hover:bg-neutral-300;
+    }
+  }
+}
+
+.globalInitial {
+  @apply bg-green-100 text-green-800;
+}
+.globalActive {
+  @apply bg-neutral-100 text-neutral-800;
+}

@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "id": "1760",
+      "text": "Read a book",
+      "description": "Finish reading 'To Kill a Mockingbird'",
+      "completed": true
+    },
+    {
+      "id": "6220",
+      "text": "Eat a burger",
+      "description": "Try the new burger at the local diner",
+      "completed": false
+    },
+    {
+      "id": "3144",
+      "text": "Do homework",
+      "description": "Complete to do list and axios mock",
+      "completed": false
+    },
+    {
+      "id": "4245",
+      "text": "Finish a homework",
+      "description": "I finally finished the homework",
+      "completed": true
+    }
+  ]
+}

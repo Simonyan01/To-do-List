@@ -8,8 +8,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      '@api': '/src/api',
       '@components': '/src/components',
       '@data': '/src/data',
+      '@styles': '/src/styles',
       '@utils': '/src/utils',
     }
   }

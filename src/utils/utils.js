@@ -1,35 +1,57 @@
-export const handleAdd = (newText, setTodos) => {
-    const newTodo = {
-        id: Date.now(),
-        text: newText,
-        completed: false,
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify"
+import { API } from "@api/axios"
+
+export const handleAdd = async (newTodo, setTodos) => {
+    try {
+        const res = await API.post("/todos", {
+            text: newTodo.text,
+            description: newTodo.description,
+            completed: false,
+        })
+
+        setTodos((prevTodos) => [...prevTodos, res.data])
+    } catch (err) {
+        console.error(`Failed to add new todo: ${err}`)
     }
-    setTodos(prevTodos => [...prevTodos, newTodo])
 }
 
-export const handleSave = (text, setText, onAdd, setError) => {
-    if (!text.trim()) {
-        return setError("Please fill all the fields")
-    }
+export const handleDelete = async (id, setTodos) => {
+    try {
+        const res = await API.delete(`/todos/${id}`)
 
-    onAdd(text);
-    setText('');
-    setError(null)
+        if (res.status === 200) {
+            toast.success("Todo deleted successfully!")
+            setTodos(prevTodos => prevTodos.filter((todo) => todo.id !== id))
+        } else {
+            console.error(`Failed to delete todo: Unexpected response status ${res.status}`)
+        }
+    } catch (err) {
+        console.error(`Failed to delete todo: ${err}`)
+        toast.error("Failed to delete todo")
+    }
 }
 
-export const handleDelete = (id, setTodos) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
-};
+export const handleToggleComplete = async (id, setTodos) => {
+    try {
+        const res = await API.get(`/todos/${id}`)
+        const updatedResponse = await API.patch(`/todos/${id}`, { completed: !res.data.completed })
 
-export const handleToggleComplete = (id, setTodos) => {
-    setTodos((prevTodos) =>
-        prevTodos.map((todo) =>
-            todo.id === id
-                ? { ...todo, completed: !todo.completed }
-                : todo
-        )
-    );
-};
+        if (updatedResponse.status === 200) {
+            setTodos((prevTodos) => (
+                prevTodos.map((todo) =>
+                    todo.id === id
+                        ? { ...todo, completed: !todo.completed }
+                        : todo
+                ))
+            )
+        } else {
+            console.error(`Failed to toggle completion: Unexpected response status ${res.status}`)
+        }
+    } catch (err) {
+        console.error(err)
+    }
+}
 
 export const filterState = {
     active: (todo) => !todo.completed,

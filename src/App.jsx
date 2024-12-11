@@ -1,9 +1,10 @@
-import { ToDoList } from "@components/todo-list";
+import { ToDoList } from "@components/todo-list"
+import styles from "./App.module.scss"
 
 export default function App() {
   return (
-    <section className="min-h-screen bg-neutral-300 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <section className={styles.app}>
+      <div className={styles.container}>
         <ToDoList />
       </div>
     </section>

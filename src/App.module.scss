@@ -1,0 +1,6 @@
+.app {
+  @apply min-h-screen tracking-wide bg-neutral-300 flex items-center justify-center p-4;
+  .container {
+    @apply w-full max-w-2xl max-h-[46rem] overflow-y-auto scroll-container;
+  }
+}
