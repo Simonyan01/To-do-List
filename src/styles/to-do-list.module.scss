@@ -1,13 +1,31 @@
 .container {
   @apply p-6 bg-neutral-100 text-neutral-800 rounded-l-lg shadow-lg;
+
+  :global(.dark) & {
+    @apply bg-gray-800;
+  }
+
   .title {
-    @apply text-4xl font-semibold text-neutral-700 text-center;
+    @apply text-4xl font-semibold text-neutral-700 text-center mb-4;
+
+    :global(.dark) & {
+      @apply text-gray-300;
+    }
   }
 }
 
 .listContainer {
-  @apply p-4 bg-neutral-100 text-neutral-800 rounded-lg shadow-sm;
+  @apply p-4 pb-1 bg-neutral-200 text-neutral-800 rounded-b-lg shadow-sm;
+
+  :global(.dark) & {
+    @apply bg-gray-900;
+  }
+
   .unavailable {
     @apply text-2xl tracking-wide;
+
+    :global(.dark) & {
+      @apply text-gray-400;
+    }
   }
 }

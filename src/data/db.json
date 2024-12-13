@@ -4,25 +4,48 @@
       "id": "1760",
       "text": "Read a book",
       "description": "Finish reading 'To Kill a Mockingbird'",
+      "category": "normal",
       "completed": true
     },
     {
       "id": "6220",
       "text": "Eat a burger",
       "description": "Try the new burger at the local diner",
+      "category": "low-priority",
       "completed": false
     },
     {
       "id": "3144",
       "text": "Do homework",
       "description": "Complete to do list and axios mock",
+      "category": "normal",
       "completed": false
     },
     {
       "id": "4245",
       "text": "Finish a homework",
       "description": "I finally finished the homework",
+      "category": "normal",
       "completed": true
+    },
+    {
+      "id": "bbde",
+      "text": "Go to the store",
+      "description": "Buy some groceries and stuff ",
+      "category": "urgent",
+      "completed": false,
+      "subTasks": [
+        {
+          "id": 101,
+          "text": "Add Tailwind CSS",
+          "completed": false
+        },
+        {
+          "id": 102,
+          "text": "Create components",
+          "completed": false
+        }
+      ]
     }
   ]
 }

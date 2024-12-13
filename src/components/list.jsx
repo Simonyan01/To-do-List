@@ -1,23 +1,28 @@
 import styles from "@styles/to-do-list.module.scss"
-import { ToDoItem } from "./todo-item";
+import { ToDoContext } from "@context/context"
+import { ToDoItem } from "./todo-item"
+import { useContext } from "react"
 
-export const List = ({ items, onDelete, onToggleComplete }) => {
+export const List = () => {
+  const { filteredTodos, onDelete, onToggleComplete, onAddSubTask } = useContext(ToDoContext)
+
   return (
-    <div className={styles.listContainer}>
+    <section className={styles.listContainer}>
       {
-        items?.length === 0 ? (
+        filteredTodos?.length === 0 ? (
           <span className={styles.unavailable}>No tasks available</span>
         ) : (
-          items.map((todo) => (
+          filteredTodos.map((todo) => (
             <ToDoItem
               key={todo.id}
               todo={todo}
               onDelete={onDelete}
+              onAddSubTask={onAddSubTask}
               onToggleComplete={onToggleComplete}
             />
           ))
         )
       }
-    </div>
+    </section>
   )
 }

@@ -1,6 +1,11 @@
 .app {
-  @apply min-h-screen tracking-wide bg-neutral-300 flex items-center justify-center p-4;
+  @apply min-h-screen tracking-wide bg-neutral-300 text-gray-900 flex items-center p-8 justify-evenly;
+
+  :global(.dark) & {
+    @apply bg-gray-900 transition-all duration-300;
+  }
+
   .container {
-    @apply w-full max-w-2xl max-h-[46rem] overflow-y-auto scroll-container;
+    @apply w-full max-w-5xl max-h-[46rem] overflow-y-auto scroll-container;
   }
 }

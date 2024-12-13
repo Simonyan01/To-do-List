@@ -10,7 +10,9 @@ export default defineConfig({
     alias: {
       '@api': '/src/api',
       '@components': '/src/components',
+      '@context': '/src/context',
       '@data': '/src/data',
+      '@hooks': '/src/hooks',
       '@styles': '/src/styles',
       '@utils': '/src/utils',
     }

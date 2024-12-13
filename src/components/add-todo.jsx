@@ -1,7 +1,10 @@
-import { useForm } from "react-hook-form"
 import styles from "@styles/add-todo.module.scss"
+import { ToDoContext } from "@context/context";
+import { useForm } from "react-hook-form"
+import { useContext } from "react";
 
-export const AddTodo = ({ onAdd }) => {
+export const AddTodo = () => {
+  const { onAdd } = useContext(ToDoContext);
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
   const handleSave = (data) => {
@@ -10,7 +13,7 @@ export const AddTodo = ({ onAdd }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <form onSubmit={handleSubmit(handleSave)}>
         {errors.text && <p className={styles.error}>{errors.text.message}</p>}
         {errors.description && <p className={styles.error}>{errors.description.message}</p>}
@@ -37,8 +40,16 @@ export const AddTodo = ({ onAdd }) => {
                 !!value.trim() || "Description can't be empty"
             })}
           />
+          <select
+            className={`col-span-2 ${styles.basicInput}`}
+            {...register("category")}
+          >
+            <option value="normal">Normal</option>
+            <option value="urgent">Urgent</option>
+            <option value="low-priority">Low Priority</option>
+          </select>
         </div>
       </form>
-    </div>
+    </section>
   )
 }

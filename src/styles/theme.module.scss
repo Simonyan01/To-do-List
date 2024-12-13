@@ -1,0 +1,7 @@
+.theme {
+  @apply px-3 py-2 bg-gray-800 text-gray-200 font-medium rounded-xl tracking-wider transition-all;
+
+  :global(.dark) & {
+    @apply bg-gray-200 text-gray-800 font-semibold transition-all tracking-wider;
+  }
+}
